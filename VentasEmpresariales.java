@@ -6,6 +6,9 @@ public class VentasEmpresariales {
         int cantidadVentas;
         int ventasMayores = 0;
         int ventasMenores = 0;
+        int clientesVIP = 0;
+        int ClientesFrecuentes = 0;
+        int clientesGenerales = 0;
 
         double totalVentas = 0;
         double ventaMayor = 0;
@@ -30,13 +33,22 @@ public class VentasEmpresariales {
                 ventasMenores ++;
             }
 
+            if (venta > 1000000) {
+                System.out.println("-> Registro: Nivel 1 (VIP)");
+                clientesVIP++;
+            } else if (venta >= 500000 && venta <= 1000000) {
+                System.out.println("-> Registro: Nivel 2 (Frecuente)");
+                ClientesFrecuentes++;
+            } else {
+                System.out.println("-> Registro: Nivel 3 (General)");
+                clientesGenerales++;
+            }
             if (venta > ventaMayor) {
                 ventaMayor = venta;
             }
 
-            if (i == 1) {
+            if (i ==1) {
                 ventaMenor = venta;
-                
             } else if (venta < ventaMenor) {
                 ventaMenor = venta;
             }
@@ -46,14 +58,20 @@ public class VentasEmpresariales {
 
         System.out.println("=============INFORME EMPRESARIAL==============");
 
-        System.out.println("Cantidad de ventas: " + cantidadVentas);
-        System.out.println("Total recaudado: $" + totalVentas);
-        System.out.println("Promedio de ventas: $" + promedio);
-        System.out.println("Venta más alta: $" + ventaMayor);
-        System.out.println("Venta más baja: $" + ventaMenor);
+        System.out.println("Cantidad de ventas totales: " + cantidadVentas);
+        System.out.println("Total recaudado en el día: $" + totalVentas);
+        System.out.println("Promedio general de ventas: $" + promedio);
+        System.out.println("Venta más alta registrada: $" + ventaMayor);
+        System.out.println("Venta más baja registrada: $" + ventaMenor);
+        System.out.println("----------------------------------------------");
         System.out.println("Ventas superiores a $500.000: " + ventasMayores);
         System.out.println("Ventas de $500.000 o menos: " + ventasMenores);
-        System.out.println("==============================");
+        System.out.println("----------------------------------------------");
+        System.out.println("==========REPORTES POR NIVEL CLIENTE==========");
+        System.out.println("Clientes nivel 1 (VIP - Mayores a $1M: " + clientesVIP);
+        System.out.println("Clientes nivel 2 (Frecuente - $500K a $1M: " + ClientesFrecuentes);
+        System.out.println("Clientes nivel 3 (General - Menores a $500K: " + clientesGenerales);
+        System.out.println("==============================================");
 
         entrada.close();
     }
